@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import { AiOutlineDownload } from "react-icons/ai"; // Import the download icon
 import img from "../assets/port pic.jpg";
 import cv from "../assets/cv.png";
-import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate();
+  const handleNavClick = (item) => {
+    document.getElementById(item)?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <section
       id="hero"
@@ -43,9 +43,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 bg-black text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 text-base font-medium shadow-md hover:shadow-lg flex items-center gap-2"
-                onClick={() => {
-                  navigate("/work");
-                }}
+                onClick={() => handleNavClick("work")}
               >
                 See My Work
               </motion.button>
@@ -56,7 +54,20 @@ const Hero = () => {
                 download="KaungHtetNaing_CV.png"
                 className="px-3 py-3 bg-gray-100 text-gray-700 rounded-lg border border-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300 text-base font-medium shadow-md hover:shadow-lg flex items-center gap-2"
               >
-                <AiOutlineDownload className="text-xl" /> {/* Download Icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                  />
+                </svg>
                 Download My CV
               </a>
             </div>
