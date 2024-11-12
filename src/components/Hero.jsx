@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import { AiOutlineDownload } from "react-icons/ai"; // Import the download icon
 import img from "../assets/port pic.jpg";
+import cv from "../assets/cv.png";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
@@ -36,17 +38,27 @@ const Hero = () => {
               Enthusiastic junior MERN stack developer eager to innovate and
               deliver seamless web experiences through modern technologies.
             </p>
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center md:justify-start gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 mb-6 bg-black text-white rounded-xl hover:bg-indigo-600 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-xl"
+                className="px-6 py-3 bg-black text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 text-base font-medium shadow-md hover:shadow-lg flex items-center gap-2"
                 onClick={() => {
                   navigate("/work");
                 }}
               >
                 See My Work
               </motion.button>
+
+              {/* Download CV Button */}
+              <a
+                href={cv}
+                download="KaungHtetNaing_CV.png"
+                className="px-3 py-3 bg-gray-100 text-gray-700 rounded-lg border border-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300 text-base font-medium shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                <AiOutlineDownload className="text-xl" /> {/* Download Icon */}
+                Download My CV
+              </a>
             </div>
           </motion.div>
 
