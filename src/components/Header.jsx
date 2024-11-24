@@ -15,7 +15,7 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["home", "skills", "work", "contact"];
+  const navItems = ["home", "about me", "skills", "projects", "contact"];
 
   // Handle navigation to each section
   const handleNavClick = (item) => {
