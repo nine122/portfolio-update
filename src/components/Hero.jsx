@@ -24,7 +24,7 @@ const Hero = () => {
               <span>I am</span>
               <span className="text-indigo-600">
                 <Typewriter
-                  words={["Kaung Htet Naing.", "junior web developer."]}
+                  words={["Kaung Htet Naing.", "full stack developer."]}
                   loop={true}
                   cursor
                   cursorStyle="|"
@@ -43,7 +43,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 bg-black text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 text-base font-medium shadow-md hover:shadow-lg flex items-center gap-2"
-                onClick={() => handleNavClick("work")}
+                onClick={() => handleNavClick("projects")}
               >
                 See My Work
               </motion.button>
@@ -56,16 +56,16 @@ const Hero = () => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 group-hover:translate-y-1 transition-transform"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
                   stroke="currentColor"
-                  className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                   />
                 </svg>
                 Download My CV

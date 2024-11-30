@@ -1,8 +1,56 @@
 import React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
-// Education data array remains the same
+// Updated TextReveal Component
+const TextReveal = ({ text, className, staggerDelay = 0.05 }) => {
+  if (!text || typeof text !== "string") return null;
+
+  const words = text.trim().split(" ").filter(Boolean);
+  if (words.length === 0) return null;
+
+  return (
+    <motion.div initial="hidden" animate="visible" className={className}>
+      {words.map((word, index) => (
+        <motion.span
+          key={index}
+          initial={{
+            opacity: 0,
+            filter: "blur(10px)",
+          }}
+          animate={{
+            opacity: 1,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            delay: index * staggerDelay,
+            type: "tween",
+            duration: 0.5,
+          }}
+          style={{
+            display: "inline-block",
+            marginRight: "0.25em",
+          }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
+TextReveal.propTypes = {
+  text: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  staggerDelay: PropTypes.number,
+};
+
+TextReveal.defaultProps = {
+  className: "",
+  staggerDelay: 0.05,
+};
+
+// Education data
 const education = [
   {
     period: "2023 - Present",
@@ -32,7 +80,7 @@ const education = [
   },
 ];
 
-// Animation variants remain the same
+// Animation variants
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -51,76 +99,6 @@ const containerVariants = {
       delayChildren: 0.4,
     },
   },
-};
-
-// TypingText component remains the same
-const TypingText = ({ text, className }) => {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.06, delayChildren: 0.05 * i },
-    }),
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      x: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
-
-  if (!text || typeof text !== "string") return null;
-
-  const words = text.trim().split(" ").filter(Boolean);
-  if (words.length === 0) return null;
-
-  return (
-    <motion.div
-      ref={ref}
-      style={{ display: "flex", flexWrap: "wrap" }}
-      variants={container}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      className={className}
-    >
-      {words.map((word, index) => (
-        <motion.span
-          variants={child}
-          style={{ marginRight: "0.25em" }}
-          key={`${word}-${index}`}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
-
-TypingText.propTypes = {
-  text: PropTypes.string.isRequired,
-  className: PropTypes.string,
-};
-
-TypingText.defaultProps = {
-  className: "",
 };
 
 const MyStory = () => {
@@ -144,7 +122,7 @@ const MyStory = () => {
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-indigo-900 bg-clip-text text-transparent mb-6">
             My Story
           </h1>
-          <TypingText
+          <TextReveal
             text="A passionate developer with a love for creating beautiful and functional web experiences. Here's a glimpse into my journey."
             className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto"
           />
@@ -187,15 +165,15 @@ const MyStory = () => {
                 </h2>
               </div>
               <div className="prose prose-base md:prose-lg text-gray-600 max-w-none space-y-4">
-                <TypingText
+                <TextReveal
                   text="Hello! I'm a full-stack developer passionate about building efficient and user-friendly web solutions. My journey into tech has been shaped by curiosity and a drive to solve complex problems creatively."
                   className="mb-4 text-sm md:text-base"
                 />
-                <TypingText
+                <TextReveal
                   text="When I'm not coding, you'll find me exploring new technologies, listening to podcasts or sharing through technical blog posts. I believe in continuous learning and pushing the boundaries of what's possible with code."
                   className="mb-4 text-sm md:text-base"
                 />
-                <TypingText
+                <TextReveal
                   text="My goal is to create impactful digital solutions that make a difference in people's lives while maintaining high standards of code quality and user experience."
                   className="mb-4 text-sm md:text-base"
                 />
@@ -242,7 +220,7 @@ const MyStory = () => {
                           {edu.period}
                         </span>
                       </div>
-                      <TypingText
+                      <TextReveal
                         text={edu.description}
                         className="text-sm md:text-base text-gray-600 mb-4"
                       />
