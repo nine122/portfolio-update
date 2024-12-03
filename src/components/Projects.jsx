@@ -231,7 +231,7 @@ const Projects = () => {
       description:
         "Users can create accounts, upload their own recipes, and explore others'.",
       image: recipe,
-      githubLink: "https://github.com/your-username/recipe-creator",
+      githubLink: "https://github.com/nine122/recipe",
     },
     {
       id: 2,
